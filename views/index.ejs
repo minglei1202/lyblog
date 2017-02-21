@@ -1,0 +1,61 @@
+<% include public/header %>
+<body>
+<% include sidenav %>
+	
+	<div class="container">
+		<div class="screen-img"></div>
+		<div class="main-content">
+			<div class="metabar">
+				<div class="metabar-block align-right">
+					<div class="btn-set">
+						<a class="btn btn-light post-article">New Story</a>
+					</div>
+				</div>
+			</div>
+			<header class="hero hero-home layout-single-column">
+				<div class="align-middle layout-single-column layout-foreground layout-fill-height">
+					<div class="align-block">
+						<h1 class="hero-title">236 V5</h1>
+						<p class="hero-description hero-description-tagline">Everyone’s stories and ideas</p>
+						<div class="hero-actions btn-set">
+							<a class="btn btn-light btn-small">Learn more</a>
+						</div>
+					</div>
+					<div class="nav-tabs">
+						<ul class="nav-tabs-list">
+							<li class="nav-tabs-list-item active">
+								<a class="nav-tabs-list-group">Top 100</a>
+							</li>
+							<li class="nav-tabs-list-item">
+								<a class="nav-tabs-list-group" href="/user/2">Zhang HK</a>
+							</li>
+							<li class="nav-tabs-list-item">
+								<a class="nav-tabs-list-group" href="/user/3">Chang YQ</a>
+							</li>
+							<li class="nav-tabs-list-item">
+								<a class="nav-tabs-list-group" href="/user/5">Cao YW</a>
+							</li>
+							<li class="nav-tabs-list-item">
+								<a class="nav-tabs-list-group" href="/user/1">Li ML</a>
+							</li>
+							<li class="nav-tabs-list-item">
+								<a class="nav-tabs-list-group" href="/user/4">Ma YF</a>
+							</li>
+							<li class="nav-tabs-list-item">
+								<a class="nav-tabs-list-group" href="/user/6">Xu ZC</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</header>
+			<div class="post-list">
+				<div class="post-container">
+					<ul>
+						<%- partial('partials/articlelist',list) %>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+	<title>创建专辑--威武236</title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="236群博客,张宏凯博客,常运启博客,曹阳威博客,李明雷博客,马艳发博客,许智超博客,个人博客" name="keywords">
+	<meta content="236寝室博客群，专注互联网技术，一个技术传递的平台" name="description">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<script src="/javascripts/jquery-1.8.2.js"></script>
+	<link href="/stylesheets/post.css" rel="stylesheet" />
+	<link href="/stylesheets/main.css" rel="stylesheet" />
+	<script src="/javascripts/func.js"></script>
+	<script src="/javascripts/main.js"></script>
+	<style>
+		.set-Album,.setting-Album{width:800px;margin:5% auto 0;border:1px solid #DDDDDD;border-radius:4px;padding:35px 10px 10px;position:relative}
+		.set-Album:after {color: #BBBBBB;content: "create album";font-size: 12px;font-weight: bold;letter-spacing: 1px;text-transform: uppercase;position:absolute;top:10px;left:10px}
+		.avatar{width:100px;height:100px;border-radius:100%;display:block;float:left;}
+		#set-album-form{width:49%}
+		#set-album-form .button{float:right;margin:80px 20px 0 0;cursor:pointer}
+		#input-album,#dec-album{margin:20px 10px 0;width:80%;}
+		.information{float:right;width:49%}
+		.information p {color: #999;line-height: 22px;font-size: 13px;margin-top:20px;font-weight:bold}
+		.setting-Album{margin-top:20px}
+		.setting-Album label{color:#999;display:block;margin:0 0 0 10px}
+		.setting-Album .item,.setting-Album .item1{border-radius:5px;curosr:pointer;display:inline-block;margin-top:2%;verticla-align:top;width:49%;}
+		.setting-Album .item .inside,.setting-Album .item1 .inside{background:#eee;border-radius:5px;cursor:pointer;margin:1.5%;padding:6%;position:relative;text-align:left;}
+		.setting-Album .item .inside h3,.setting-Album .item1 .inside h3{color:#444;cursor:pointer;font-size:25px;}
+		.setting-Album .item .inside p,.setting-Album .item1 .inside p{color:#777;cursor:pointer;font-size:14px;line-height:20px;margin-top:10px}
+		.setting-Album .item.active .inside,.setting-Album .item1.active .inside{background:#ccc}
+		.setting-Album i.icons{color:#39a24e;position:absolute;top:10px;right:10px;font-size:25px}
+		.setting-Album i.icons.none{display:none}
+		#Submit{position:fixed;top:10px;right:40px}
+	</style>
+</head>
+<body>
+<% include sidenav %>
+<div class="container">
+	<button id="Submit" class="blue">do it</button>
+	<h2 class="container_title"><i class="icons icon-sys" style="vertical-align: -3px;margin-right:5px"></i>Create Album</h2>
+	<div class="set-Album">
+		<div class="information">
+			<p>
+				"Album" is a collection of articles classification or related articles.<br/>
+				Can build the album for a person, event, topic, essays, special, series, serial, technology practice.<br/>
+				Always enter your article page select or change album.
+			</p>
+		</div>
+		<form action="/addAlbum" method="post" id="set-album-form" onsubmit="return false;">
+			<input type="text" name="album" id="input-album" placeholder="Album name">
+			<input type="hidden" name="is_public" value="0">
+			<input type="hidden" name="morder" value="1">
+			<textarea name="info" id="dec-album"></textarea>
+		</form>
+	</div>
+	<div class="setting-Album">
+		<label>How to sort the article?</label>
+		<div class="item active" data="1">
+			<div class="inside">
+				<i class="icons icon-ok"></i>
+				<h3>Excellent</h3>
+				<p>It is recommended to the row in front, followed by the recent.</p>
+			</div>
+		</div>
+		<div class="item" data="2">
+			<div class="inside">
+				<i class="icons icon-ok none"></i>
+				<h3>Publish time</h3>
+				<p>The new publish of the article in the first row, followed by the recent.</p>
+			</div>
+		</div>
+		<label>Who can add article?</label>
+		<div class="item1 active" data="0">
+			<div class="inside">
+				<i class="icons icon-ok"></i>
+				<h3>Self</h3>
+				<p>Private: only you can add articles to this album, you can open it to all the people in the future.</br></p>
+			</div>
+		</div>
+		<div class="item1" data="1">
+			<div class="inside">
+				<i class="icons icon-ok none"></i>
+				<h3>Everyone</h3>
+				<p>Public: anyone can add articles to this album, you can not remove the appropriate article.</p>
+			</div>
+		</div>
+	</div>
+	<% include public/footer %>
+</div>
+<script>
+	$(function(){
+		var siteNav = $(".site-nav-logo"),
+		    container = $(".container"),
+		    sitenavlist = $(".site-nav-list"),
+		    sign = $(".login"),
+		    sitenavoverlay = $(".site-nav-overlay");
+		function showNav(){
+			setCss(container,{'transform':'translate3d(280px, 0px, 0px)'});
+			siteNav.hide();
+			sitenavoverlay.show(function(){
+				bindAction($(this),'click',function(){
+					delAttr(container,'style');
+					$(this).hide(function(){
+						siteNav.fadeIn(500);
+					});
+				})
+				setCss(sitenavlist,{'padding-top':'180px'});
+				setCss(sign,{'left':'10px'});
+			});
+		}
+		$(".setting-Album .item").click(function(){
+			$(".setting-Album .item").removeClass('active').find("i.icons").addClass("none");
+			$(this).addClass('active').find("i.icons").removeClass("none");
+			$("#set-album-form input[name=morder]").val($(this).attr("data"));
+		});
+		$(".setting-Album .item1").click(function(){
+			$(".setting-Album .item1").removeClass('active').find("i.icons").addClass("none");
+			$(this).addClass('active').find("i.icons").removeClass("none");
+			$("#set-album-form input[name=is_public]").val($(this).attr("data"));
+		});
+		$("#Submit").click(function(){
+			var form = $("#set-album-form");
+			var action = form.attr("action");
+			$.post(action,form.serialize(),function(json){
+                if(json.status == -3){
+                    alert("The input can not be empty!");
+                }
+				if(json.status == -2){
+					$(".logined-info").css("display","none");
+					$(".login-frame").css("display","block");
+					siteNav.trigger('click');
+					setCss(sitenavlist,{'padding-top':'180px'});
+					setCss(sign,{'left':'10px'});
+				}
+				if(json.status == -1) alert("The album has been created!");
+				if(json.status == 1) alert("Successfully created!");
+				if(json.status == 0) alert("The operation failed, please contact the system administrator.");
+			});
+		});
+	})
+</script>
+</body>
+</html>

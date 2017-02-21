@@ -1,0 +1,86 @@
+<button class="site-nav-logo">
+	<span style="font-size:1em">V</span>
+</button>
+<nav class="site-nav">
+	<div class="left-bar">
+		<div class="login" style="position:absolute;left:280px;width:220px">
+			<div class="logined-info">
+				<img src="/avatar/0_big.gif" class="logined-avatar"/>
+				<span style="display:block;width:100px;margin:50px 0 0 20px;color:#B3B3B1;" class="pull-left"><a href="/profile" class="user-account"></a></span>
+			</div>
+			<div class="login-frame">
+				<form action="/login" class="login-form" onsubmit="return false;">
+					<input type="text" placeholder="account" title="account" name="account">
+					<input type="password" placeholder="password" title="password" name="password">
+					<button type="submit" class="blue do-login" style="padding:5px 10px;">Sign in</button>
+				</form>
+			</div>
+			<script>
+				<% if(session) { %>
+					$(".logined-info").show();
+					$(".login-frame").hide();
+					islogin = true;
+					$(".user-account").html("<%=session['name'] %>");
+				<% }else{ %>
+					$(".logined-info").hide();
+					islogin = false;
+					$(".login-frame").show();
+				<% } %>
+			</script>
+		</div>
+		<div class="logining"><span class="loading"></span></div>
+		<ul class="site-nav-list">
+			<li class="site-nav-list-item">
+				<a class="site-nav-list-item-btn" href="/">
+					<i class="icons icons-home"></i>Home
+				</a>
+			</li>
+			<li class="site-nav-list-item">
+				<a class="site-nav-list-item-btn" href="/square">
+					<i class="icons icon-th"></i>Album square
+				</a>
+			</li>
+			<hr>
+			<li class="site-nav-list-item">
+				<a class="site-nav-list-item-btn" <% if(session) { %>href="/setting"<% }else{ %> style="cursor:not-allowed"<% } %> id="setting">
+					<i class="icons icon-user"></i><span class="name"><%=session['name']||'未登录' %></span>
+				</a>
+				<i class="icons icon-sys system"></i>
+			</li>
+			<hr>
+			<li class="site-nav-list-item">
+				<a class="site-nav-list-item-btn">
+					<i class="icons icons-article"></i>Articles
+				</a>
+			</li>
+			<li class="site-nav-list-item">
+				<a class="site-nav-list-item-btn" href="/publish">
+					<i class="icons icons-send"></i>Publish article
+				</a>
+			</li>
+			<li class="site-nav-list-item">
+				<a class="site-nav-list-item-btn post-article _islogin" href="/add-album">
+					<i class="icons icons-book"></i>Create album
+				</a>
+			</li>
+			<li class="site-nav-list-item">
+				<% if(session) { %>
+					<a class="site-nav-list-item-btn" href="/logout">
+						<i class="icons icon-log-out"></i>Sign out
+					</a>
+				<% }else{ %>
+					<a class="site-nav-list-item-btn"  id="login">
+						<i class="icons icon-log-in"></i>Sign in
+					</a>
+				<% } %>
+			</li>
+			<hr>
+			<li class="site-nav-list-item">
+				<a class="site-nav-list-item-btn">
+					<i class="icons icon-about"></i>About us
+				</a>
+			</li>
+		</ul>
+	</div>
+</nav>
+<div class="site-nav-overlay"></div>

@@ -1,0 +1,32 @@
+<% include public/header %>
+<style>
+	.paper{padding:36px 0 0 5%;}
+	.collect_list li,.collect_list li a{display:block;width:180px;height:85px;background:#eee;border-radius:5px;cursor:pointer;text-shadow: 0 1px 1px #000000, 0 0 5px #000000, 0 0 5px #000000, 0 0 5px #000000;}
+	.collect_list li a:hover,.collect_list li a{color:#eee;}
+	.collect_list .cover b{display: block;font-size: 20px;font-weight: 900;;cursor:pointer}
+	.collect_list .cover i{display: inline-block;font-size: 12px;;cursor:pointer}
+	.collect_list li .cover{width:80%;height:50px;cursor:pointer;padding:10%;border-radius:5px;}
+	.collect_list li .cover:hover{background:#ccc;cursor:pointer}
+	.collect_list li{border:1px dotted #ccc;float:left;margin:10px}
+</style>
+<script>
+	$(function(){
+		var li = $(".collect_list li");
+        var num = Math.ceil((li.length)/7);
+        var height = num*105;
+        $(".collect_list").css({height:height+"px"});
+	})
+</script>
+<body>
+<% include sidenav %>	
+	<div class="container">
+		<h2 class="container_title"><i class="icons icon-th" style="vertical-align: -3px;margin-right:5px"></i>Album Square</h2>
+		<div class="paper">
+			<ul class="collect_list">
+                <%- partial('partials/albumlist',list) %>
+			</ul>
+		</div>
+		<% include public/footer %>	
+	</div>
+</body>
+</html>

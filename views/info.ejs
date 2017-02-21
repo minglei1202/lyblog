@@ -1,0 +1,27 @@
+<% include public/header %>
+<body>
+<% include sidenav %>	
+	<div class="container">
+		<div class="sideinfo">
+			<div class="cover">
+				<div class="avatar">
+					<img src="<%=info['avatar'] %>"/>
+				</div>
+				<h3 class="name font-type"><%=info['name'] %></h3>
+				<ul class="article-info">
+					<li><i class="icons icon-file"></i><%=info['sum'] %>篇文章</li>
+					<li><i class="icons icon-thumbs-up"></i><%=info['up'] %>推荐</li>
+				</ul>
+				<p class="motto">威武236</p>
+			</div>
+		</div>
+		<div class="post-list post-info">
+			<div class="post-container" style="margin:0 6%;">
+				<ul>
+					<%- partial('partials/articlelist',list) %>
+				</ul>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

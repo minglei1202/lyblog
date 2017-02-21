@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+	<title>发表文章--威武236</title>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<meta content="236群博客,张宏凯博客,常运启博客,曹阳威博客,李明雷博客,马艳发博客,许智超博客,个人博客" name="keywords">
+	<meta content="236寝室博客群，专注互联网技术，一个技术传递的平台" name="description">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<script src="/javascripts/jquery-1.8.2.js"></script>
+	<link href="/stylesheets/post.css" rel="stylesheet" />
+	<link href="/stylesheets/main.css" rel="stylesheet" />
+	<script src="/javascripts/func.js"></script>
+	<script src="/javascripts/main.js"></script>
+</head>
+<body>
+<% include sidenav %>
+<div class="container">
+	<div class="auto_draft">Saving,pleash wait...</div>
+	<h2 class="container_title"><i class="icons icon-edit" style="vertical-align: -3px;margin-right:5px"></i>Edit Your New Article</h2>
+	<button id="Submit" class="blue" actext="WAIT...">Publish</button>
+    <div class="collectitle"><i class="icons icon-bookmark" style="line-height: 40px;color:#666"></i><span style="font-size: 23px;color:#666;margin:0 10px">Album：<%=info.album %></span></div>
+	<div class="collectitle">
+		<input id="Title" title="Subject Of Article" placeholder="Subject Of Article">
+        <input type="hidden" value="<%=info.aid %>" name="collect_id">
+	</div>
+	<div id="Wrap">
+		<div class="inputWrap">
+			<ul id="Bar">
+				<li class="preview" title="Open/Close [Preview] Model"><i class="glyphicon glyphicon-eye-open"></i>Preview</li>
+				<li class="help active" title="Open/Close [Help] Model"><i class="glyphicon glyphicon-question-sign"></i>Help</li>
+					<li class="info" title="This editor support markdown,Click here to view grammar tips"><i class="glyphicon .glyphicon-cog"></i><a target="_blank" href="http://www.liminglei.cn/mardown">markdown</a></li>
+			</ul>
+			<textarea id="Input" placeholder="The main body of the article,support MarkDown"></textarea>
+		</div>
+		<div style="display: none;" id="Preview" class="articleView"></div>
+		<div class="clear"></div>
+	</div>
+</div>
+<script src="/javascripts/marked.js"></script>
+<script src="/javascripts/post.js"></script>
+</body>
+</html>
